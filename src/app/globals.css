@@ -1,0 +1,275 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Barlow", "Ruberoid", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-ggc-blue: var(--ggc-blue);
+  --color-ggc-blue-dark: var(--ggc-blue-dark);
+  --color-ggc-red: var(--ggc-red);
+  --color-ggc-green: var(--ggc-green);
+  --color-rg-text: var(--rg-text);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0rem;
+  /* GGC Properties brand palette (from the company signboard: blue / red / green) */
+  --ggc-blue: #1b7dc3;
+  --ggc-blue-dark: #1568a4;
+  --ggc-red: #c8262c;
+  --ggc-green: #2e9e4f;
+  --rg-text: #666666;
+  --background: #ffffff;
+  --foreground: #1f2124;
+  --card: #ffffff;
+  --card-foreground: #1f2124;
+  --popover: #ffffff;
+  --popover-foreground: #1f2124;
+  --primary: #1b7dc3;
+  --primary-foreground: #ffffff;
+  --secondary: #c8262c;
+  --secondary-foreground: #ffffff;
+  --muted: #f5f5f5;
+  --muted-foreground: #666666;
+  --accent: #f5f5f5;
+  --accent-foreground: #1f2124;
+  --destructive: #b91c1c;
+  --destructive-foreground: #ffffff;
+  --border: #e1e1e1;
+  --input: #e1e1e1;
+  --ring: #1b7dc3;
+  --chart-1: #1b7dc3;
+  --chart-2: #c8262c;
+  --chart-3: #1568a4;
+  --chart-4: #a9d5f2;
+  --chart-5: #2e9e4f;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1f2124;
+  --sidebar-primary: #1b7dc3;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #1f2124;
+  --sidebar-border: #e1e1e1;
+  --sidebar-ring: #1b7dc3;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Barlow", "Ruberoid", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ===== GGC Properties utilities ===== */
+
+.rg-container {
+  max-width: 1290px;
+  margin-inline: auto;
+  padding-inline: 15px;
+}
+
+/* Theme buttons — Ruberoid-style: 12px, bold, uppercase */
+.rg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Barlow", "Ruberoid", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  line-height: 20px;
+  color: #fff;
+  background-color: var(--ggc-blue);
+  padding: 17px 35px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.rg-btn:hover {
+  background-color: var(--ggc-blue-dark);
+}
+.rg-btn-secondary {
+  background-color: var(--ggc-red);
+}
+.rg-btn-secondary:hover {
+  background-color: #a61e24;
+}
+.rg-btn-outline {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+}
+.rg-btn-outline:hover {
+  background: #fff;
+  color: #1f2124;
+}
+
+/* Small eyebrow labels (e.g. "PROJECTS", "highlights", "testimonials", "news") */
+.rg-label {
+  font-family: "Barlow", "Ruberoid", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ggc-blue);
+}
+
+/* Section heading font (color inherited so light/dark contexts work) */
+.rg-heading {
+  font-family: "Barlow", "Ruberoid", sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* Custom scrollbar for inner scroll areas */
+.rg-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.rg-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.rg-scroll::-webkit-scrollbar-thumb {
+  background: var(--ggc-blue);
+}
+
+/* Hero slide text animation (letter-by-letter style) */
+@keyframes rg-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rg-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: rg-letter-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes rg-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rg-fade-up {
+  opacity: 0;
+  animation: rg-fade-up 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Ken-burns zoom on hero images */
+@keyframes rg-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+.rg-kenburns {
+  animation: rg-kenburns 9s ease-out forwards;
+}
+
+/* Testimonial quote decorative mark */
+.rg-quote-mark {
+  font-family: Georgia, serif;
+  line-height: 1;
+  color: var(--ggc-blue);
+}
+
+/* Estatik-like property tags */
+.rg-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  background: #f4f8fa;
+  border: 1px solid #e1e1e1;
+  padding: 3px 10px;
+  margin: 0 4px 6px 0;
+}
+
+/* Dropdown nav underline effect */
+.rg-nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+.rg-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--ggc-blue);
+  transition: width 0.25s ease;
+}
+.rg-nav-link:hover::after,
+.rg-nav-link[data-active="true"]::after {
+  width: 100%;
+}
+
+/* Robust dropdown behaviour (independent of @media hover support) */
+.rg-nav-item > .rg-dropdown {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+.rg-nav-item:hover > .rg-dropdown,
+.rg-nav-item:focus-within > .rg-dropdown {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
